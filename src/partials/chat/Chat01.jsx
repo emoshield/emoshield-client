@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState} from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import User01 from '../../images/user-36-01.jpg';
 import User02 from '../../images/user-36-02.jpg';
@@ -6,22 +7,25 @@ import User03 from '../../images/user-36-03.jpg';
 import User04 from '../../images/user-36-04.jpg';
 
 function Chat01() {
-  // const [formData, setFormData] = useState({
-  //   input: ""
-  // });
+  const [chatvalue, setChatvalue] = useState("");
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log(formData);
-  // }
+  const handleSubmit = (value) => {
+    
+  }
+
+  const handleChatValue = (e) => {
+    const { value } = e.target;
+    setChatvalue(value);
+  }
 
   return (
     <>
       <div class="w-full h-16 rounded-lg flex"
-        style={{ borderRadius: "10px 10px 0px 0px", backgroundColor: "#7C7C7C" }}>
+        style={{ borderRadius: "10px 10px 0px 0px", backgroundColor: "#000001" }}>
         <div class="h-8 w-8 ml-6 m-4 bg-white rounded-full flex rounded-lg"></div>
         <div class="h-6 w-32 m-4 mt-5 bg-white rounded-full flex rounded-lg"></div>
-        <div class="h-8 w-16 m-4 ml-36 mt-5 bg-white rounded-full flex rounded-lg"></div>
+        <div class="h-8 w-16 m-4 ml-36 mt-5 bg-white rounded-full flex rounded-lg" 
+        style={{backgroundColor:"#E74F63"}}></div>
       </div>
       <div class="w-full h-full "
         style={{ backgroundColor: "#D9D9D9" }}>
@@ -29,7 +33,7 @@ function Chat01() {
           <div id="ScrollContainer" className="rounded-lg sc-iRaSfU eYKESv">
             <div className="sc-dhyxXW gacFCF"
               style={{ height: "640px" }}>
-              <div style={{ opacity: 1, transform: 'translate3d(0px, 0px, 0px)' }}>
+              <div style={{ opacity: 1, transform: 'translate3d(0px, 0px, 0px)', position: 'relative', height: '100%' }}>
                 <div className="sc-jSMfEi IvyET" style={{ width: '100%' }}>
                   <div className="sc-jSMfEi sc-kRktcz sc-ejVUYw eXGIIr gFXdna gjqWGP">
                     <div className="sc-khBlLl eTVFAW">
@@ -81,7 +85,7 @@ function Chat01() {
                     </div>
                   </div>
                 </div>
-                <div className="sc-jSMfEi IvyET flex" style={{ width: '100%', height: "50px" }}>
+                <div className="sc-jSMfEi IvyET flex" style={{ width: '100%', height: "50px", position: 'absolute', bottom: '16px' }}>
                   {/* <div className="flex sc-jSMfEi sc-kRktcz sc-ejVUYw eXGIIr gFXdna gjqWGP"
                   style={{padding:"0"}}> */}
                   {/* <div className="sc-khBlLl eTVFAW " style={{ width: "300px", }}>
@@ -90,8 +94,8 @@ function Chat01() {
                   {/* <div className="sc-khBlLl eTVFAW bg-black " style={{ width: "50px", height: "50px" }}> */}
                   <div class="w-full mt-6 flex max-w-md gap-x-4">
                     <label for="input" class="sr-only">Input</label>
-                    <input id="input" required class="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" placeholder="이모쉴드가 전달해드릴게요" />
-                    <button type="submit" class="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Send</button>
+                    <input id="input" value={chatvalue} onChange={(e) => handleChatValue(e)} required class="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" placeholder="이모쉴드가 전달해드릴게요" />
+                    <button onClick={() => handleSubmit(chatvalue)} type="submit" class="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Send</button>
                   </div>
                   {/* </div> */}
                   {/* </div> */}
