@@ -44,16 +44,13 @@ function DropdownProfile({
         aria-expanded={dropdownOpen}
       >
         <div className="flex items-center truncate">
-          <div className="">
-          <p className="mr-2 truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">Acme Inc.</p>
-          <p className="mr-2 truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">655-41-234.</p>
+          <div className="" style={{textAlignLast: "right"}}>
+          <p className="mr-2 truncate ml-2 text-sm font-medium text-white dark:text-white group-hover:text-slate-800 dark:group-hover:text-slate-200">김이모 님</p>
+          <p className="mr-2 truncate ml-2 text-sm font-medium text-white dark:text-white group-hover:text-slate-800 dark:group-hover:text-slate-200">+(02) 345-123-5678</p>
           </div>
-          {/* <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
-            <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-          </svg> */}
-          <div className="w-8 h-8 rounded-full" width="32" height="32" alt="User" 
+          <img className="w-8 h-8 rounded-full" width="32" height="32" alt="User" 
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           style={{backgroundColor:"#9A9A9A"}}/>
-          {/* <img className="w-8 h-8 rounded-full" src="#" width="32" height="32" alt="User" /> */}
 
         </div>
       </button>
@@ -74,8 +71,8 @@ function DropdownProfile({
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200 dark:border-slate-700">
-            <div className="font-medium text-slate-800 dark:text-slate-100">Acme Inc.</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 italic">Administrator</div>
+            <div className="font-medium text-white ">Acme Inc.</div>
+            <div className="text-xs text-white italic">Administrator</div>
           </div>
           <ul>
             <li>

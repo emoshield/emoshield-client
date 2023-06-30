@@ -1,104 +1,141 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import User01 from '../../images/user-36-01.jpg';
-import User02 from '../../images/user-36-02.jpg';
-import User03 from '../../images/user-36-03.jpg';
-import User04 from '../../images/user-36-04.jpg';
 
 function Chat01() {
+  const bllablla = `내가 하는 말이 지금 이해가 안돼? 대가리가 비었어? `;
+  const [isChatLoading, setIsChatLoading] = useState(false);
   const [chatvalue, setChatvalue] = useState("");
+  const [pureText, setPureText] = useState("");
+  const [activeButton, setActiveButton] = useState({
+    origin: false,
+    filtering: false,
+  });
 
-  const handleSubmit = (value) => {
-    
+  const handleSubmit = async () => {
+    try {
+      setIsChatLoading(true);
+      const { data } = await axios.post('https://develop.api.emoshield.link/chat', { chat: bllablla });
+
+      setIsChatLoading(false);
+      setPureText(data.summary);
+    } catch (err) {
+      console.error('An error occurred', err);
+    }
   }
 
   const handleChatValue = (e) => {
     const { value } = e.target;
-    setChatvalue(value);
-  }
+    setChatValue(value);
+  };
+
+  const handleButtonClick = () => {
+    setActiveButton((prev) => ({
+      ...prev,
+      filtering: !prev.filtering,
+    }));
+
+    handleSubmit();
+  };
+
+  const deleteChatBlur = () => {
+    setActiveButton((prev) => ({
+      ...prev,
+      origin: !prev.origin,
+    }));
+  };
 
   return (
     <>
-      <div class="w-full h-16 rounded-lg flex"
-        style={{ borderRadius: "10px 10px 0px 0px", backgroundColor: "#000001" }}>
-        <div class="h-8 w-8 ml-6 m-4 bg-white rounded-full flex rounded-lg"></div>
-        <div class="h-6 w-32 m-4 mt-5 bg-white rounded-full flex rounded-lg"></div>
-        <div class="h-8 w-16 m-4 ml-36 mt-5 bg-white rounded-full flex rounded-lg" 
-        style={{backgroundColor:"#E74F63"}}></div>
+      <div class="w-full h-full flex jusify-between items-center"
+        style={{ backgroundColor: "rgb(30 41 59 / var(--tw-bg-opacity))", border: "1px solid rgb(51, 65, 85)", padding: "0px 16px" }}>
+        <div class="w-full h-full flex items-center gap-2" style={{ height: "72px" }}>
+          <img class="h-8 w-8   white rounded-full flex"
+          src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            style={{ backgroundColor: "rgb(51, 65, 85)" }}></img>
+          <div class="h-6 w-32 white rounded-full white"style={{ whiteSpace: "nowrap", color: "white" }}>강삼춘 고객님</div>
+        </div>
+        <div class=" bg-white rounded-full flex items-center justify-center rounded-lg"
+          style={{ backgroundColor: "#E74F63", fontSize: "14px", padding: "8px 12px", whiteSpace: "nowrap" }}>
+          통화 종료</div>
       </div>
       <div class="w-full h-full "
-        style={{ backgroundColor: "#D9D9D9" }}>
+        style={{ backgroundColor: "#D9D9D9", border: "1px solid rgb(51, 65, 85)" }}>
         <div className="sc-jSMfEi sc-laFCIP eXGIIr cYEFlo">
-          <div id="ScrollContainer" className="rounded-lg sc-iRaSfU eYKESv">
+          <div id="ScrollContainer" className=" sc-iRaSfU eYKESv"
+            style={{ backgroundColor: "#1D1E23" }}>
             <div className="sc-dhyxXW gacFCF"
               style={{ height: "640px" }}>
-              <div style={{ opacity: 1, transform: 'translate3d(0px, 0px, 0px)', position: 'relative', height: '100%' }}>
-                <div className="sc-jSMfEi IvyET" style={{ width: '100%' }}>
-                  <div className="sc-jSMfEi sc-kRktcz sc-ejVUYw eXGIIr gFXdna gjqWGP">
-                    <div className="sc-khBlLl eTVFAW">
-                      아
-                    </div>
-                    <div className="sc-khBlLl eTVFAW " style={{ width: "300px" }}>
-                      안녕하세요! 여러분을 위한 AI 필터링 서비스 이모쉴드예요. 핵심만 전달해드릴게요.
-                    </div>
-                  </div>
-                </div>
-                <div style={{ marginTop: '-2px' }}>
+              <div className="sticky " style={{ opacity: 1, transform: 'translate3d(0px, 0px, 0px)', position: 'relative', height: '100%' }}>
+                <div style={{ marginTop: '-2px' }} >
                   <div style={{ opacity: 1, transform: 'translate3d(0px, 0px, 0px)' }}>
-                    <div className="sc-jSMfEi sc-gzzPqb bzWeFp fmdMnR" style={{ visibility: 'visible', maxHeight: '100vh', alignItems: "center" }}>
-
-                      <div className="mb-2 sc-jSMfEi sc-fmrZth bzWeFp1 dSeEhO">
-                        <button className="sc-gKXOVf sc-iFwKgL gQPbfP WbQFN" style={{ borderTopLeftRadius: '0px' }}>
-                          우주복을 입은 강아지 캐릭터를 그려줘.
-                        </button>
+                    <div className="sc-jSMfEi sc-gzzPqb bzWeFp fmdMnR" style={{ visibility: 'visible', maxHeight: '100vh', alignItems: "center", position: "relative", gap: "2rem" }}>
+                      <div className="sc-jSMfEi flex justify-end w-full">
+                        <div className="sc-gKXOVf sc-iFwKgL gQPbfP1 WbQFN" style={{ borderBottomRightRadius: '0px', fontSize: "14px", padding: "12px 16px" }}>
+                          안녕하세요. 고객님, 삼당원 김이모입니다.
+                        </div>
                       </div>
-                      <div className="sc-jSMfEi sc-gkJlnC eXGIIr gxhulW">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#6446FF" xmlns="http://www.w3.org/2000/svg">
-                          <g clipPath="url(#clip0_10379_50419)">
-                            <path
-                              d="M8 0.445312C3.58178 0.445312 0 3.23109 0 6.66753C0 8.60887 1.144 10.3422 2.93511 11.4831C2.70222 12.5093 2.15956 14.0315 0.888889 15.5564C3.448 15.1298 5.084 13.8849 6.096 12.7049C6.70756 12.8213 7.34267 12.8898 8 12.8898C12.4182 12.8898 16 10.104 16 6.66753C16 3.23109 12.4182 0.445312 8 0.445312Z"
-                              fill="current"
-                            />
-                            <path d="M7.99997 7.55512C8.49089 7.55512 8.88886 7.15715 8.88886 6.66623C8.88886 6.17531 8.49089 5.77734 7.99997 5.77734C7.50905 5.77734 7.11108 6.17531 7.11108 6.66623C7.11108 7.15715 7.50905 7.55512 7.99997 7.55512Z" fill="white" />
-                            <path d="M11.5556 7.55512C12.0466 7.55512 12.4445 7.15715 12.4445 6.66623C12.4445 6.17531 12.0466 5.77734 11.5556 5.77734C11.0647 5.77734 10.6667 6.17531 10.6667 6.66623C10.6667 7.15715 11.0647 7.55512 11.5556 7.55512Z" fill="white" />
-                            <path d="M4.44455 7.55512C4.93547 7.55512 5.33344 7.15715 5.33344 6.66623C5.33344 6.17531 4.93547 5.77734 4.44455 5.77734C3.95363 5.77734 3.55566 6.17531 3.55566 6.66623C3.55566 7.15715 3.95363 7.55512 4.44455 7.55512Z" fill="white" />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_10379_50419">
-                              <rect width="16" height="16" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        고객의 음성을 필터링 하는 중 입니다.
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", width: "100%" }}>
+                        <div className="mb-2 sc-jSMfEi sc-fmrZth bzWeFp1 dSeEhO">
+                          <div
+                            className={`sc-gKXOVf sc-iFwKgL gQPbfP WbQFN ${activeButton.origin ? '' : 'blur'}`}
+                            style={{ borderTopLeftRadius: '0px', fontSize: '14px', padding: "12px 16px" }}
+                          >
+                            {bllablla}
+                          </div>
+                        </div>
+                        <div class="flex" style={{ alignSelf: "start" }}>
+                          <button
+                            value="button01"
+                            style={{
+                              borderColor: "#70CECA", borderWidth: "2px", fontSize: "8px", borderRadius: "20px", padding: "8px", marginRight: "4px", color:
+                                activeButton.origin ? "black" : "#70CECA",
+                              backgroundColor: activeButton.origin ? "#70CECA" : "transparent",
+                              minWidth: "56px",
+                              fontWeight: "bold"                              
+                            }}
+                            onClick={deleteChatBlur}>{activeButton.origin ? '숨기기' : '원본보기'}</button>
+                          <button
+                            value="button02"
+                            style={{
+                              borderColor: "#70CECA", borderWidth: "2px", fontSize: "8px", borderRadius: "20px", padding: "8px", color: "black",
+                              backgroundColor: "#70CECA",
+                              fontWeight: "bold"
+                            }}
+                            onClick={handleButtonClick}>필터링 처리하기</button>
+                        </div>
                       </div>
-                      <div className="mb-2 sc-jSMfEi sc-fmrZth bzWeFp dSeEhO">
-                        <button className="sc-gKXOVf sc-iFwKgL gQPbfP WbQFN" style={{ borderBottomRightRadius: '0px' }}>
-                          지금부터 너는 나의 심리상담사야. 요즘 내가 느끼는 스트레스를 듣고 적절한 조언을 해줘.
-                        </button>
-                      </div>
-                      <div className="mb-2 sc-jSMfEi sc-fmrZth bzWeFp1 dSeEhO">
-                        <button className="sc-gKXOVf sc-iFwKgL gQPbfP WbQFN" style={{ borderTopLeftRadius: '0px' }}>
-                          칸트와 데카르트 관점에서 각각 "있음"과 "존재"의 차이를 설명해줘.
-                        </button>
-                      </div>
+                      {pureText && <div className="mb-2  flex w-full justify-end ">
+                        <div className="sc-gKXOVf sc-iFwKgL gQPbfP1 WbQFN" style={{ borderBottomRightRadius: '0px', fontSize: "14px", padding: "12px 16px" }}>
+                          <span>{pureText}</span>
+                        </div>
+                      </div>}
                     </div>
                   </div>
                 </div>
-                <div className="sc-jSMfEi IvyET flex" style={{ width: '100%', height: "50px", position: 'absolute', bottom: '16px' }}>
-                  {/* <div className="flex sc-jSMfEi sc-kRktcz sc-ejVUYw eXGIIr gFXdna gjqWGP"
-                  style={{padding:"0"}}> */}
-                  {/* <div className="sc-khBlLl eTVFAW " style={{ width: "300px", }}>
-                      
-                    </div> */}
-                  {/* <div className="sc-khBlLl eTVFAW bg-black " style={{ width: "50px", height: "50px" }}> */}
+                <div className="sc-jSMfEi IvyET flex" style={{ width: '100%', position: 'absolute', bottom: '16px' }}>
+                  {isChatLoading &&
+                    <svg width="50%" height="26" viewBox="0 0 285 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.37541 10.6257C5.20657 10.6257 4.25024 11.5821 4.25024 12.7509C4.25024 13.9197 5.20657 14.8761 6.37541 14.8761C7.54425 14.8761 8.50057 13.9197 8.50057 12.7509C8.50057 11.5821 7.54425 10.6257 6.37541 10.6257ZM19.1264 10.6257C17.9575 10.6257 17.0012 11.5821 17.0012 12.7509C17.0012 13.9197 17.9575 14.8761 19.1264 14.8761C20.2952 14.8761 21.2515 13.9197 21.2515 12.7509C21.2515 11.5821 20.2952 10.6257 19.1264 10.6257ZM12.7509 10.6257C11.5821 10.6257 10.6257 11.5821 10.6257 12.7509C10.6257 13.9197 11.5821 14.8761 12.7509 14.8761C13.9197 14.8761 14.8761 13.9197 14.8761 12.7509C14.8761 11.5821 13.9197 10.6257 12.7509 10.6257Z" fill="#66BDE5" />
+                      <path d="M53.4047 17.218H39.7197V15.637H44.6327V10.537H46.6217V15.637H53.4047V17.218ZM51.8407 5.522C51.9087 9.34133 51.6933 12.203 51.1947 14.107L49.2907 13.869C49.7213 12.271 49.9027 10.0213 49.8347 7.12H41.1817V5.522H51.8407ZM67.4634 13.087H65.5764V9.415H64.2674V12.917H62.4144V4.468H64.2674V7.817H65.5764V4.196H67.4634V13.087ZM67.4634 19.36H65.4914V15.382H56.9744V13.801H67.4634V19.36ZM61.1564 5.267C61.1564 7.137 60.6634 8.74067 59.6774 10.078C58.6914 11.404 57.3088 12.458 55.5294 13.24L54.3734 11.71C55.5861 11.302 56.6401 10.6447 57.5354 9.738C58.4421 8.83133 58.9521 7.87367 59.0654 6.865H55.2574V5.267H61.1564ZM72.0702 8.786C72.0702 9.364 72.2628 9.84 72.6482 10.214C73.0448 10.588 73.5775 10.775 74.2462 10.775C74.9148 10.775 75.4475 10.588 75.8442 10.214C76.2408 9.84 76.4392 9.364 76.4392 8.786C76.4392 8.23067 76.2408 7.77167 75.8442 7.409C75.4475 7.035 74.9148 6.848 74.2462 6.848C73.5888 6.848 73.0618 7.035 72.6652 7.409C72.2685 7.77167 72.0702 8.23067 72.0702 8.786ZM82.2192 4.196V19.343H80.2472V4.196H82.2192ZM70.0302 8.803C70.0302 7.72633 70.4155 6.85367 71.1862 6.185C71.9568 5.505 72.9768 5.165 74.2462 5.165C75.5155 5.165 76.5298 5.505 77.2892 6.185C78.0598 6.85367 78.4452 7.72633 78.4452 8.803C78.4452 9.86833 78.0598 10.741 77.2892 11.421C76.5298 12.101 75.5155 12.441 74.2462 12.441C72.9882 12.441 71.9682 12.101 71.1862 11.421C70.4155 10.741 70.0302 9.86833 70.0302 8.803ZM79.6182 15.467C78.1222 15.6597 76.4165 15.807 74.5012 15.909C72.2345 15.9997 70.6478 16.0393 69.7412 16.028L69.4522 14.328C71.3108 14.328 72.9542 14.2997 74.3822 14.243C76.3542 14.175 78.0428 14.0503 79.4482 13.869L79.6182 15.467ZM102.592 12.798H88.9075V11.2H102.592V12.798ZM100.841 19.156H90.6585V14.005H100.841V19.156ZM98.8695 17.609V15.518H92.6305V17.609H98.8695ZM93.3785 6.44C92.8118 6.68933 92.5285 7.02367 92.5285 7.443C92.5285 7.86233 92.8118 8.20233 93.3785 8.463C93.9452 8.71233 94.7328 8.837 95.7415 8.837C96.7388 8.837 97.5265 8.71233 98.1045 8.463C98.6938 8.20233 98.9885 7.86233 98.9885 7.443C98.9885 7.02367 98.6995 6.68933 98.1215 6.44C97.5548 6.19067 96.7615 6.066 95.7415 6.066C94.7328 6.066 93.9452 6.19067 93.3785 6.44ZM90.4715 7.443C90.4715 6.58167 90.9362 5.879 91.8655 5.335C92.7948 4.791 94.0868 4.519 95.7415 4.519C97.4075 4.519 98.7052 4.791 99.6345 5.335C100.575 5.879 101.045 6.58167 101.045 7.443C101.045 8.31567 100.575 9.024 99.6345 9.568C98.7052 10.112 97.4132 10.384 95.7585 10.384C94.1038 10.384 92.8062 10.112 91.8655 9.568C90.9362 9.024 90.4715 8.31567 90.4715 7.443ZM116.294 13.036H114.305V8.922H111.721V7.341H114.305V4.196H116.294V13.036ZM112.826 10.911L111.687 12.458C111.064 12.2087 110.424 11.8007 109.766 11.234C109.109 10.656 108.627 10.0383 108.321 9.381C108.106 10.129 107.647 10.8317 106.944 11.489C106.253 12.135 105.539 12.5827 104.802 12.832L103.612 11.251C104.734 10.843 105.624 10.214 106.281 9.364C106.939 8.50267 107.267 7.511 107.267 6.389V4.893H109.324V6.287C109.324 7.39767 109.664 8.36667 110.344 9.194C111.036 10.0213 111.863 10.5937 112.826 10.911ZM116.396 16.283C116.396 17.2123 115.937 17.949 115.019 18.493C114.101 19.0483 112.821 19.326 111.177 19.326C109.568 19.326 108.304 19.0483 107.386 18.493C106.48 17.949 106.026 17.2123 106.026 16.283C106.026 15.331 106.48 14.583 107.386 14.039C108.293 13.4837 109.557 13.206 111.177 13.206C112.821 13.206 114.101 13.4837 115.019 14.039C115.937 14.583 116.396 15.331 116.396 16.283ZM111.177 14.804C110.203 14.804 109.438 14.9343 108.882 15.195C108.338 15.4557 108.066 15.8183 108.066 16.283C108.066 16.7363 108.338 17.0933 108.882 17.354C109.438 17.6033 110.203 17.728 111.177 17.728C112.186 17.728 112.962 17.6033 113.506 17.354C114.062 17.0933 114.339 16.7363 114.339 16.283C114.339 15.8183 114.062 15.4557 113.506 15.195C112.962 14.9343 112.186 14.804 111.177 14.804ZM132.308 12.169H118.623V10.588H132.308V12.169ZM131.05 19.275H120.255V15.416H128.534V14.549H120.272V13.002H130.506V16.81H122.244V17.643H131.05V19.275ZM122.193 7.137C122.193 7.48833 122.488 7.783 123.077 8.021C123.666 8.24767 124.471 8.361 125.491 8.361C126.511 8.361 127.316 8.24767 127.905 8.021C128.506 7.783 128.806 7.48833 128.806 7.137C128.806 6.77433 128.511 6.48533 127.922 6.27C127.333 6.04333 126.522 5.93 125.491 5.93C124.46 5.93 123.649 6.04333 123.06 6.27C122.482 6.48533 122.193 6.77433 122.193 7.137ZM120.136 7.137C120.136 6.29833 120.601 5.63533 121.53 5.148C122.471 4.66067 123.791 4.417 125.491 4.417C127.18 4.417 128.494 4.66067 129.435 5.148C130.376 5.63533 130.846 6.29833 130.846 7.137C130.846 7.96433 130.376 8.62733 129.435 9.126C128.494 9.61333 127.18 9.857 125.491 9.857C123.802 9.857 122.488 9.61333 121.547 9.126C120.606 8.62733 120.136 7.96433 120.136 7.137ZM151.032 19.224H140.594V15.263H148.635V14.345H140.577V12.764H150.607V16.708H142.583V17.626H151.032V19.224ZM147.615 11.455C145.768 11.8177 142.685 11.999 138.367 11.999L138.112 10.384H140.084C140.028 9.99867 139.954 9.449 139.863 8.735C139.784 8.021 139.739 7.60733 139.727 7.494C139.977 7.47133 140.345 7.43733 140.832 7.392C141.32 7.33533 141.603 7.30133 141.682 7.29C141.705 7.92467 141.762 8.94467 141.852 10.35C142.646 10.3273 143.218 10.3047 143.569 10.282L143.739 7.29C144.782 7.40333 145.417 7.46567 145.643 7.477L145.303 10.197C146.301 10.1177 147.02 10.0383 147.462 9.959L147.615 11.455ZM150.607 11.982H148.635V4.196H150.607V11.982ZM147.037 6.627H138.622V5.063H147.037V6.627ZM155.503 14.345C158.11 14.3903 160.065 14.2543 161.368 13.937L161.589 15.45C160.014 15.8127 157.815 15.9827 154.993 15.96L153.548 15.943V5.505H160.501V7.086H155.503V9.653H159.855V11.234H155.503V14.345ZM165.465 19.343H163.493V11.302H160.96V9.602H163.493V4.196H165.465V19.343ZM180.323 13.393H178.334V4.196H180.323V13.393ZM176.719 10.724L176.889 12.254C176.288 12.4013 175.342 12.526 174.05 12.628C172.769 12.73 171.624 12.781 170.616 12.781H168.576V8.089H173.404V6.712H168.525V5.148H175.393V9.585H170.565V11.183C171.528 11.217 172.65 11.1887 173.931 11.098C175.223 11.0073 176.152 10.8827 176.719 10.724ZM179.048 14.294C179.977 14.804 180.442 15.501 180.442 16.385C180.442 17.269 179.977 17.966 179.048 18.476C178.118 18.986 176.821 19.241 175.155 19.241C173.489 19.241 172.191 18.986 171.262 18.476C170.332 17.966 169.868 17.269 169.868 16.385C169.868 15.501 170.332 14.804 171.262 14.294C172.191 13.784 173.489 13.529 175.155 13.529C176.821 13.529 178.118 13.784 179.048 14.294ZM175.155 15.093C174.135 15.093 173.33 15.212 172.741 15.45C172.163 15.688 171.874 15.9997 171.874 16.385C171.874 16.7703 172.163 17.082 172.741 17.32C173.33 17.5467 174.135 17.66 175.155 17.66C176.186 17.66 176.985 17.5467 177.552 17.32C178.13 17.082 178.419 16.7703 178.419 16.385C178.419 15.9883 178.13 15.6767 177.552 15.45C176.985 15.212 176.186 15.093 175.155 15.093ZM196.004 9.381H187.215V7.8H196.004V9.381ZM189.34 6.746V5.182H194.015V6.746H189.34ZM199.132 4.196V10.333H201.24V11.982H199.132V19.343H197.126V4.196H199.132ZM187.963 13.172C187.963 12.2313 188.303 11.455 188.983 10.843C189.663 10.2197 190.541 9.908 191.618 9.908C192.706 9.908 193.584 10.214 194.253 10.826C194.933 11.438 195.273 12.22 195.273 13.172C195.273 14.1127 194.933 14.8947 194.253 15.518C193.573 16.13 192.695 16.436 191.618 16.436C190.53 16.436 189.646 16.1357 188.966 15.535C188.297 14.923 187.963 14.1353 187.963 13.172ZM189.901 13.172C189.901 13.6593 190.06 14.056 190.377 14.362C190.706 14.668 191.119 14.821 191.618 14.821C192.162 14.821 192.581 14.6737 192.876 14.379C193.182 14.073 193.335 13.6707 193.335 13.172C193.335 12.6733 193.171 12.271 192.842 11.965C192.525 11.659 192.117 11.506 191.618 11.506C191.119 11.506 190.706 11.659 190.377 11.965C190.06 12.271 189.901 12.6733 189.901 13.172ZM215.826 13.257H202.141V11.659H215.826V13.257ZM214.143 9.959H203.977V4.689H205.966V8.378H214.143V9.959ZM214.245 18.935H203.892V14.464H205.864V17.354H214.245V18.935ZM235.298 12.781H229.416V13.75C230.822 13.8407 231.91 14.1297 232.68 14.617C233.462 15.093 233.853 15.7107 233.853 16.47C233.853 17.32 233.377 17.983 232.425 18.459C231.485 18.9463 230.159 19.19 228.447 19.19C226.747 19.19 225.421 18.9463 224.469 18.459C223.529 17.983 223.058 17.32 223.058 16.47C223.058 15.7107 223.438 15.093 224.197 14.617C224.968 14.1297 226.045 13.8407 227.427 13.75V12.781H221.613V11.183H235.298V12.781ZM234.601 9.058L233.751 10.639C232.641 10.5483 231.587 10.2367 230.589 9.704C229.603 9.17133 228.889 8.54233 228.447 7.817C228.062 8.565 227.382 9.19967 226.407 9.721C225.444 10.231 224.362 10.537 223.16 10.639C223.058 10.435 222.905 10.1517 222.701 9.789C222.509 9.42633 222.384 9.194 222.327 9.092C223.54 9.03533 224.6 8.77467 225.506 8.31C226.424 7.84533 227.014 7.239 227.274 6.491H223.024V4.91H233.938V6.491H229.671C229.966 7.21633 230.589 7.817 231.541 8.293C232.505 8.75767 233.525 9.01267 234.601 9.058ZM231.83 16.487C231.83 16.113 231.524 15.824 230.912 15.62C230.3 15.4047 229.473 15.297 228.43 15.297C227.399 15.297 226.583 15.4047 225.982 15.62C225.382 15.824 225.081 16.113 225.081 16.487C225.081 16.8497 225.382 17.133 225.982 17.337C226.583 17.541 227.399 17.643 228.43 17.643C229.473 17.643 230.3 17.541 230.912 17.337C231.524 17.133 231.83 16.8497 231.83 16.487ZM253.615 19.156H243.602V13.07H245.591V14.583H251.626V13.053H253.615V19.156ZM251.626 17.575V16.113H245.591V17.575H251.626ZM253.598 12.271H251.626V4.196H253.598V12.271ZM241.579 8.463C241.579 7.43167 241.958 6.57033 242.718 5.879C243.488 5.18767 244.446 4.842 245.591 4.842C246.747 4.842 247.704 5.182 248.464 5.862C249.223 6.542 249.603 7.409 249.603 8.463C249.603 9.517 249.229 10.3613 248.481 10.996C247.733 11.6193 246.769 11.931 245.591 11.931C244.423 11.931 243.46 11.6193 242.701 10.996C241.953 10.3613 241.579 9.517 241.579 8.463ZM243.585 8.446C243.585 9.01267 243.772 9.466 244.146 9.806C244.531 10.1347 245.013 10.299 245.591 10.299C246.169 10.299 246.65 10.1347 247.036 9.806C247.421 9.466 247.614 9.01267 247.614 8.446C247.614 7.834 247.421 7.358 247.036 7.018C246.662 6.66667 246.18 6.491 245.591 6.491C245.013 6.491 244.531 6.67233 244.146 7.035C243.772 7.38633 243.585 7.85667 243.585 8.446ZM268.438 4.196V19.343H266.483V4.196H268.438ZM264.936 13.274L265.191 14.872C264.353 15.0873 263.236 15.2573 261.842 15.382C260.448 15.4953 259.224 15.552 258.17 15.552H256.776V5.709H258.748V13.852C261.253 13.852 263.316 13.6593 264.936 13.274ZM282.633 4.196V9.908H284.809V11.557H282.633V19.343H280.644V4.196H282.633ZM273.351 14.192C275.992 14.192 277.986 14.039 279.335 13.733C279.358 13.903 279.392 14.1693 279.437 14.532C279.482 14.8833 279.522 15.144 279.556 15.314C278.23 15.654 275.992 15.824 272.841 15.824H271.379V5.59H278.298V7.188H273.351V14.192Z" fill="white" />
+                    </svg>}
                   <div class="w-full mt-6 flex max-w-md gap-x-4">
                     <label for="input" class="sr-only">Input</label>
                     <input id="input" value={chatvalue} onChange={(e) => handleChatValue(e)} required class="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" placeholder="이모쉴드가 전달해드릴게요" />
-                    <button onClick={() => handleSubmit(chatvalue)} type="submit" class="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Send</button>
+                    <button onClick={() => handleSubmit(chatvalue)} type="submit" class="flex-none rounded-md bg-indigo-500  text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" style={{ backgroundColor: "#70D0C8" }}>
+                      <svg width="50" height="48" viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="48" height="48" rx="16" fill="#70D0C8" />
+                        <g clip-path="url(#clip0_119_3135)">
+                          <path d="M18.9472 30.541L12.8424 25.8826C11.0952 24.5496 11.4497 21.8476 13.473 21.0869L30.5454 14.6602C32.7247 13.8392 34.9329 15.9387 34.2229 18.1567L28.6654 35.5314C28.0067 37.5895 25.327 38.0808 23.9076 36.4031L18.9472 30.541ZM18.9472 30.541L25.5785 23.5664" stroke="black" stroke-width="2.45717" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_119_3135">
+                            <rect width="32.9963" height="33.6983" fill="white" transform="translate(2 23.9131) rotate(-46.4455)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </button>
+
                   </div>
-                  {/* </div> */}
-                  {/* </div> */}
                 </div>
               </div>
             </div>

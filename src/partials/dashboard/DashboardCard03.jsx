@@ -70,7 +70,7 @@ function DashboardCard03() {
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
-          <img src={Icon} width="32" height="32" alt="Icon 03" />
+          <img src="src/assets/call.png" width="32" height="32" alt="Icon 03" />
           {/* Menu button */}
           <EditMenu align="right" className="relative inline-flex">
             <li>
@@ -90,11 +90,12 @@ function DashboardCard03() {
             </li>
           </EditMenu>
         </header>
-        <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">Acme Professional</h2>
-        <div className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase mb-1">Sales</div>
+        <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">고객 만족도</h2>
+        <div className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase mb-1"></div>
         <div className="flex items-start">
-          <div className="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">$9,962</div>
-          <div className="text-sm font-semibold text-white px-1.5 bg-emerald-500 rounded-full">+49%</div>
+          <div className="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">9.962점</div>
+          <div className="text-sm font-semibold text-white px-1.5 bg-emerald-500 rounded-full"
+          style={{backgroundColor: "rgb(112, 206, 202)"}}>4.9점</div>
         </div>
       </div>
       {/* Chart built with Chart.js 3 */}

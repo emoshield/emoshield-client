@@ -50,52 +50,6 @@
     width: 100%;
 }
 
-.framer-BKQla.framer-v-1npm6bl .framer-16wpwxw,
-.framer-BKQla.framer-v-1qrg04t .framer-16wpwxw {
-  gap: 0px;
-  padding: 20px;
-}
-
-.framer-BKQla .framer-16wpwxw {
-    align-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 10px;
-    height: 80px;
-    justify-content: center;
-    overflow: hidden;
-    padding: 25px;
-    position: relative;
-    width: 1200px;
-  }
-
-  .framer-BKQla .framer-1rzrhxl {
-    aspect-ratio: 3.6058339566192967 / 1;
-    flex: none;
-    height: var(--framer-aspect-ratio-supported, 23px);
-    overflow: visible;
-    position: relative;
-    text-decoration: none;
-    width: 82px;
-  }
-
-  .framer-BKQla .framer-1bmyg1j {
-    align-content: center;
-    align-items: center;
-    display: flex;
-    flex: 1 0 0px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    height: min-content;
-    justify-content: space-between;
-    max-width: 1200px;
-    overflow: visible;
-    padding: 0;
-    position: relative;
-    width: 1px;
-  }
 
   .framer-BKQla .framer-1ip9hjg {
     align-content: center;
@@ -190,13 +144,15 @@
     text-align: center;
 }
 
+
+
 .eYKESv {
     display: flex;
     flex-direction: column;
     padding: 0px 20px;
     width: 100%;
     flex: 1 1 0%;
-    max-height: calc(100vh - 120px);
+    max-height: calc(100vh - 280px);
     /* overflow: scroll; */
 }
 
@@ -328,7 +284,7 @@ svg:not(:root) {
   -webkit-box-pack: center;
   justify-content: center;
   position: relative;
-  background-color: transparent;
+  
 }
 
 .WbQFN {
@@ -356,4 +312,27 @@ svg:not(:root) {
   justify-content: center;
   position: relative;
   background-color: transparent;
+  background-color: black;
+  border-color: black;
+  color: white !important;
+}
+
+.gQPbfP1 {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  background-color: transparent;
+  background-color: #31494B;
+  border-color: #31494B;
+  color: white !important; 
+}
+
+.sticky{
+  /* background-color: yellow; */
+  position:sticky;
+  top:0px;
 }

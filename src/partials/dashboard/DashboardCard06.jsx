@@ -7,10 +7,10 @@ import { tailwindConfig } from '../../utils/Utils';
 function DashboardCard06() {
 
   const chartData = {
-    labels: ['United States', 'Italy', 'Other'],
+    labels: ['Label1', 'Label2', 'Label3'],
     datasets: [
       {
-        label: 'Top Countries',
+        label: 'Top 구매율',
         data: [
           35, 30, 35,
         ],

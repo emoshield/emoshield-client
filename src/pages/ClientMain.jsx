@@ -96,23 +96,6 @@ function Main(props) {
       lastSeen: "3h ago",
       lastSeenDateTime: "2023-01-23T13:23Z",
     },
-    // {
-    //   name: "회사 이름1",
-    //   email: "회사 설명",
-    //   role: "Designer",
-    //   imageUrl:
-    //     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    //   lastSeen: "3h ago",
-    //   lastSeenDateTime: "2023-01-23T13:23Z",
-    // },
-    // {
-    //   name: "회사 이름1",
-    //   email: "회사 설명",
-    //   role: "Director of Product",
-    //   imageUrl:
-    //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    //   lastSeen: null,
-    // },
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -149,10 +132,9 @@ function Main(props) {
               <button
                 type="button"
                 className=" inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                style={{ margin: "-15.5rem" }} // onClick={() => setMobileMenuOpen(true)}
+                style={{ margin: "-15.5rem" }} 
               >
                 <span>이건 버튼일까?</span>
-                {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
               </button>
             </div>
             {/* <Popover.Group className="hidden lg:flex lg:gap-x-12">

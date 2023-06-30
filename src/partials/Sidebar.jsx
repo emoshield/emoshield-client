@@ -44,12 +44,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   }, [sidebarExpanded]);
 
   return (
-    <div>
-      {/* Sidebar backdrop (mobile only) */}
+    <div style={{backgroundColor: "#21232A"}}>
+      {/*  Sidebar backdrop (mobile only) */}
       <div
         className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
           sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
+        style={{backgroundColor: "#21232A"}}
         aria-hidden="true"
       ></div>
 
@@ -60,6 +61,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-slate-800 p-4 transition-all duration-200 ease-in-out ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-64'
         }`}
+        style={{backgroundColor: "#21232A"}}
       >
         {/* Sidebar header */}
         <div className="flex justify-between mb-10 pr-3 sm:px-2">
@@ -78,7 +80,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           </button>
           {/* Logo */}
           <NavLink end to="/" className="block">
-            <svg width="32" height="32" viewBox="0 0 32 32">
+            {/* <svg width="32" height="32" viewBox="0 0 32 32">
               <defs>
                 <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">
                   <stop stopColor="#A5B4FC" stopOpacity="0" offset="0%" />
@@ -99,7 +101,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 d="M2.223 24.14L29.777 7.86A15.926 15.926 0 0132 16c0 8.837-7.163 16-16 16-5.864 0-10.991-3.154-13.777-7.86z"
                 fill="url(#logo-b)"
               />
-            </svg>
+            </svg> */}
           </NavLink>
         </div>
 
@@ -134,13 +136,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                             <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                               <path
                                 className={`fill-current ${
-                                  pathname === '/' || pathname.includes('dashboard') ? 'text-indigo-500' : 'text-slate-400'
+                                  pathname === '/' || pathname.includes('dashboard') ? '#70CECA' : 'text-slate-400'
                                 }`}
                                 d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z"
                               />
                               <path
                                 className={`fill-current ${
-                                  pathname === '/' || pathname.includes('dashboard') ? 'text-indigo-600' : 'text-slate-600'
+                                  pathname === '/' || pathname.includes('dashboard') ? '#6FD9A1' : 'text-slate-600'
                                 }`}
                                 d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z"
                               />
